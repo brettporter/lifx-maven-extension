@@ -23,4 +23,7 @@ mvn <goals> -Dlifx.label="My Label"
 
 To set this permanently, you can add it to the `MAVEN_OPTS` environment variable.
 
+# Disabling notifier
 
+Rather than uninstalling the notifier, you can disable it with
+`-Dlifx.disabled`, either on the command line or in `MAVEN_OPTS`

@@ -26,6 +26,8 @@ public class LifxExtension
     // Pass -Dlifx.label="Office" to turn on just the office lights
     private final static String LABEL = System.getProperty( "lifx.label" );
 
+    private final static boolean DISABLED = Boolean.parseBoolean( System.getProperty( "lifx.disabled", "false" ) );
+
     @Requirement
     private Logger logger;
 
@@ -48,7 +50,11 @@ public class LifxExtension
     public void afterSessionEnd( MavenSession session )
         throws InterruptedException
     {
-        if ( session.getResult().hasExceptions() )
+        if ( DISABLED )
+        {
+            logger.info( "LIFX disabled" );
+        }
+        else if ( session.getResult().hasExceptions() )
         {
             waitForConnection();
 
